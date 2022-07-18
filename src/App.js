@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
 
+
+import {useEffect, useState} from 'react'
+
+import Tasks from './Components/Tasks/Tasks.js'
 function App() {
+  const [input,setInput] = useState("")
+
+  const handleChange = event =>{
+    setInput(event.target.value)
+  }
+  var taskList = []
+  useEffect(
+    ()=>{
+      taskList.push(input)
+    },[]
+  )
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form>
+        <input type = "text" placeholder="Input your next task" value = {input} onChange = {handleChange}/>
+        <button onClick={
+         handleChange
+        }>Add</button>
+      </form>
+      <ul>
+        {
+          taskList.map((task,index)=>{
+            <Tasks tasks = {task}/>
+          })
+         
+        }
+        
+      </ul>
     </div>
   );
 }
