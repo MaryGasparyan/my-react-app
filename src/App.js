@@ -17,6 +17,8 @@ function App() {
          var newTask = []
          newTask= [...taskList]
          newTask.push(input)
+         console.log(newTask)
+         setInput("")
          return newTask;
        }
 
@@ -25,17 +27,17 @@ function App() {
  
   return (
     <div className="App">
-      <form>
+     
         <input type = "text" placeholder="Input your next task" value = {input} onChange = {handleChange}/>
         <button onClick={
-         handleClick()
+         handleClick
         }>Add</button>
-      </form>
+      
       <ul>
         {
           
-          taskList.map((task)=>{
-            <Tasks tasks = {task}/>
+          taskList.map((task,index)=>{
+           return <Tasks tasks = {task} key = {index}/>
           })
          
         }
